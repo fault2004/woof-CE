@@ -1,0 +1,11 @@
+--- linux-master/block/blk-core.c	2023-11-08 16:26:52.000000000 +0000
++++ linux-master-patched/block/blk-core.c	2023-11-16 09:45:24.447888831 +0000
+@@ -701,7 +701,7 @@
+ 		pr_warn("Trying to write to read-only block-device %pg\n",
+ 			bio->bi_bdev);
+ 		/* Older lvm-tools actually trigger this */
+-		return false;
++		return true;
+ 	}
+ 
+ 	return false;
