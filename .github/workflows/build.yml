@@ -172,5 +172,4 @@ jobs:
         name: ${{ inputs.artifact }}
         path: |
           *.iso
-          *.sfs
         retention-days: ${{ inputs.retention }}
