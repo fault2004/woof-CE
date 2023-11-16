@@ -20,6 +20,6 @@ jobs:
       arch: ${{ matrix.arch }}
       compat-distro: debian
       compat-distro-version: ${{ matrix.compat-distro-version }}
-      kernel: debian-bookworm
+      kernel: 5.15.x
       artifact: debian-${{ matrix.compat-distro-version }}-${{ github.run_number }}
       retention: 30
