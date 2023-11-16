@@ -205,7 +205,6 @@ yes|sensible-utils|sensible-utils|exe,dev,doc,nls||deps:yes
 yes|xdg-desktop-portal-gtk|xdg-desktop-portal-gtk|exe,dev,doc,nls||deps:yes
 yes|xdg-utils|xdg-utils|exe,dev,doc,nls||deps:yes
 "
-fi
 
 PKGS_SPECS_TABLE="$PKGS_SPECS_TABLE
 yes|autoconf|autoconf|exe>dev,dev,doc>dev,nls>dev||deps:yes
