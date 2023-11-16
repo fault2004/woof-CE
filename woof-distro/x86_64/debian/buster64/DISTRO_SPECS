@@ -1,11 +1,11 @@
 #One or more words that identify this distribution:
-DISTRO_NAME='Dpup Buster64'
+DISTRO_NAME='RescuePup64'
 #version number of this distribution:
 DISTRO_VERSION=8.0.0
 #The distro whose binary packages were used to build this distribution:
 DISTRO_BINARY_COMPAT='debian'
 #Prefix for some filenames: exs: dpupbuster64save.2fs, dpupbuster64-7.9.sfs
-DISTRO_FILE_PREFIX='dpupbuster64'
+DISTRO_FILE_PREFIX='respup64'
 #The version of the distro whose binary packages were used to build this distro:
 DISTRO_COMPAT_VERSION='buster'
 #read by /usr/bin/xwin to bypass Xorg Wizard at first boot:
