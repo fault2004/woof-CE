@@ -163,19 +163,7 @@ yes|xserver-xorg-video-vmware|xserver-xorg-video-vmware|exe>null,dev>null,doc>nu
 yes|xserver_xorg|xserver-xorg,xserver-xorg-video-all,xserver-xorg-input-all,xserver-xorg-input-wacom,xserver-xorg-video-intel,xinit|exe,dev,doc,nls||deps:yes
 "
 
-if [ "$DISTRO_VARIANT" = "retro" ]; then
-	PKGS_SPECS_TABLE="$PKGS_SPECS_TABLE
-yes|binutils|binutils|exe>dev,dev,doc>dev,nls>dev||deps:yes
-yes|dhcpcd|dhcpcd|exe,dev,doc,nls||deps:yes
-yes|dejavu_fonts|fonts-dejavu-core|exe,dev,doc,nls||deps:yes
-yes|gcc|gcc|exe>dev,dev,doc>dev,nls>dev||deps:yes
-yes|groff|groff-base|exe,dev,doc,nls||deps:yes
-yes|make|make|exe>dev,dev,doc>dev,nls>dev||deps:yes
-yes|patch|patch|exe>dev,dev,doc>dev,nls>dev||deps:yes
-yes|pipewire|pipewire-pulse,pipewire-alsa,libpipewire-0.3-dev|exe,dev,doc,nls||deps:yes
-"
-else
-	PKGS_SPECS_TABLE="
+PKGS_SPECS_TABLE="
 yes|gcc|gcc|exe,dev>exe,doc,nls||deps:yes # must be first
 $PKGS_SPECS_TABLE
 yes|abiword-deps|libboost-dev,libwv-dev,libenchant-2-dev|exe,dev,doc,nls||deps:yes
@@ -183,18 +171,12 @@ yes|bash-completion|bash-completion|exe,dev>null,doc,nls||deps:yes
 yes|binutils|binutils|exe,dev>exe,doc,nls||deps:yes
 yes|blueman|blueman|exe,dev,doc,nls||deps:yes
 yes|bluez|bluez,bluez-obexd|exe,dev,doc,nls||deps:yes
-yes|breeze-cursor-theme|breeze-cursor-theme|exe,dev,doc,nls||deps:yes
-yes|claws-mail-deps|libetpan-dev|exe,dev,doc,nls||deps:yes
 yes|connman|connman|exe,dev,doc,nls||deps:yes
 yes|cups|cups,cups-bsd,printer-driver-cups-pdf,foomatic-db-compressed-ppds,libcups2-dev|exe,dev,doc,nls||deps:yes
 yes|dbus-x11|dbus-x11|exe,dev,doc,nls||deps:yes
 yes|debconf|debconf|exe,dev,doc,nls
-yes|deadbeef-deps|libjansson-dev,libmpg123-dev,libcddb2-dev,libcdio-paranoia-dev|exe,dev,doc,nls||deps:yes
 yes|dkms|dkms|exe,dev>exe,doc,nls||deps:yes
 yes|epdfview-deps|libpoppler-glib-dev|exe,dev,doc,nls||deps:yes
-yes|ExpenseTracker-deps|libsqlite3-dev|exe,dev,doc,nls||deps:yes
-yes|firefox-esr|firefox-esr,firefox-esr-l10n-all|exe,dev,doc,nls||deps:yes
-yes|flatpak|flatpak|exe,dev,doc,nls||deps:yes
 yes|fonts-dejavu-core|fonts-dejavu-core|exe>null,dev>null,doc>null,nls>null
 yes|fonts-liberation2|fonts-liberation2|exe,dev,doc,nls||deps:yes
 yes|fonts-noto|fonts-noto-core,fonts-noto-mono,fonts-noto-cjk,fonts-noto-color-emoji|exe,dev,doc,nls||deps:yes
@@ -212,7 +194,6 @@ yes|netpbm|netpbm|exe,dev,doc,nls||deps:yes # dependency of wl_colpick
 yes|notification-daemon|notification-daemon|exe>null,dev>null,doc>null,nls>null
 yes|nscd|unscd|exe||deps:yes
 yes|ntpdate|ntpdate|exe,dev>exe,doc,nls||deps:yes #used by psync to sync local time and date from the internet.
-yes|numix-gtk-theme|numix-gtk-theme|exe,dev,doc,nls||deps:yes
 yes|openssh-client|openssh-client|exe,dev,doc,nls||deps:yes
 yes|patch|patch|exe,dev,doc,nls||deps:yes
 yes|pipewire|pipewire-pulse,pipewire-alsa,libspa-0.2-bluetooth,libpipewire-0.3-dev|exe,dev,doc,nls||deps:yes
@@ -221,16 +202,8 @@ yes|python|python-is-python3,python3|exe,dev,doc,nls||deps:yes
 yes|python3-pkg-resources|python3-pkg-resources|exe,dev,doc,nls||deps:yes # dependency of gdebi
 yes|rsync|rsync|exe,dev,doc,nls||deps:yes
 yes|sensible-utils|sensible-utils|exe,dev,doc,nls||deps:yes
-yes|transmission-deps|libevent-dev,libnatpmp-dev,libminiupnpc-dev|exe,dev,doc,nls||deps:yes
 yes|xdg-desktop-portal-gtk|xdg-desktop-portal-gtk|exe,dev,doc,nls||deps:yes
 yes|xdg-utils|xdg-utils|exe,dev,doc,nls||deps:yes
-yes|xournalpp-deps|libsndfile1-dev,portaudio19-dev,libzip-dev|exe,dev,doc,nls||deps:yes
-"
-fi
-
-if [ "$DISTRO_VARIANT" != "retro" ]; then
-	PKGS_SPECS_TABLE="$PKGS_SPECS_TABLE
-yes|mpv-deps|libavcodec-dev,libavfilter-dev,libass-dev,libva-dev,libvdpau-dev,liblua5.2-dev,libdvdnav-dev,libdvdread-dev,libbluray-dev,libwayland-cursor0,libxss-dev,libxpresent-dev,libxv-dev|exe,dev,doc,nls||deps:yes
 "
 fi
 
