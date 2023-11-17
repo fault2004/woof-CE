@@ -261,7 +261,13 @@ PKGS_SPECS_TABLE="$PKGS_SPECS_TABLE
 yes|testdisk|testdisk|exe,dev,doc,nls||deps:yes
 yes|gddrescue|gddrescue,ddrescueview|exe,dev,doc,nls||deps:yes
 yes|gsmartcontrol|gsmartcontrol|exe,dev,doc,nls||deps:yes
-yes|clonezilla|clonezilla|exe,dev,doc,nls||deps:yes
 yes|fsarchiver|fsarchiver|exe,dev,doc,nls||deps:yes
+yes|cloud-guest-utils|cloud-guest-utils|exe,dev,doc,nls||deps:yes
 yes|chntpw|chntpw|exe,dev,doc,nls||deps:yes
+yes|lvm|lvm2|exe,dev,doc,nls||deps:yes
+yes|xfsprogs|xfsprogs|exe,dev,doc,nls||deps:yes
+yes|btrfs-progs|btrfs-progs|exe,dev,doc,nls||deps:yes
+yes|minicom|minicom|exe,dev,doc,nls||deps:yes
+yes|cryptsetup|cryptsetup|exe,dev,doc,nls||deps:yes
+yes|nvme-cli|nvme-cli|exe,dev,doc,nls||deps:yes
 "
