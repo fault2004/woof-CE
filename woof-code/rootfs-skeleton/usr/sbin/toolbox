@@ -114,9 +114,6 @@ menu_other() {
 	RET="lxterminal\n"
 	RET+="LXTerminal\n"
 	RET+="(Terminal) LXDE Terminal.\n"
-	RET+="urxvt\n"
-	RET+="Urxvt\n"
-	RET+="(Terminal) The old classic urxvt terminal."
 	echo -e $RET
 }
 export -f menu_other
