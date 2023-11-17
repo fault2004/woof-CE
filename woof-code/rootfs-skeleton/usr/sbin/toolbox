@@ -10,6 +10,25 @@ run_cmd() {
 }
 export -f run_cmd
 
+# Create ABOUT when this file is not found, required.
+if [ ! -f "$HOME/ABOUT" ]; then
+cat <<EOF > $HOME/ABOUT
+ ____  ____  ____   ___  _  _  ____  ____  _  _  ____ 
+(  _ \(  __)/ ___) / __)/ )( \(  __)(  _ \/ )( \(  _ \\
+ )   / ) _) \___ \( (__ ) \/ ( ) _)  ) __/) \/ ( ) __/
+(__\_)(____)(____/ \___)\____/(____)(__)  \____/(__)  
+______________________________________________________
+
+Thank you for using RescuePup!
+RescuePup is a Live CD/DVD/USB Linux distribution rescue toolbox based on Puppy Linux (Debian).
+The system is running entirely in RAM.
+
+Website: https://rescuepup.sourceforge.io
+Github (source code): https://github.com/rescuepuplinux
+Made in Thailand with love, fault2004.
+EOF
+fi
+
 # HDD Tools
 menu_hdd() {
 	RET="safeaccess_manager\n"
@@ -131,7 +150,7 @@ TXT+="\\tYou're now running RescuePup on $(hostname)\\n"
 TXT+="\\tKernel: $(uname -sr)\\n\\n"
 TXT+="\\tDouble-click selected tool to launch!\\n"
 
-yad --notebook --width=890 --height=450 --center --title="RescuePup - Toolbox" --text="$TXT" --button=gtk-close --key=$KEY \
+yad --notebook --width=890 --height=500 --center --title="RescuePup - Toolbox" --text="$TXT" --button=gtk-close --key=$KEY \
 	--tab="HDD Tools" \
 	--tab="OS Maintenance" \
 	--tab="SYS Diagnostic" \
