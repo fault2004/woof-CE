@@ -259,7 +259,7 @@ fi
 # TOOLS
 PKGS_SPECS_TABLE="$PKGS_SPECS_TABLE
 yes|testdisk|testdisk|exe,dev,doc,nls||deps:yes
-yes|ddrescue|ddrescue,ddrescueview|exe,dev,doc,nls||deps:yes
+yes|gddrescue|gddrescue,ddrescueview|exe,dev,doc,nls||deps:yes
 yes|gsmartcontrol|gsmartcontrol|exe,dev,doc,nls||deps:yes
 yes|clonezilla|clonezilla|exe,dev,doc,nls||deps:yes
 yes|fsarchiver|fsarchiver|exe,dev,doc,nls||deps:yes
