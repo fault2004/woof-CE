@@ -1,0 +1,144 @@
+#!/bin/bash
+#toolbox gui
+
+KEY=$RANDOM
+
+# Run (fix gui/console program when launching)
+run_cmd() {
+	cd $HOME
+	"$1"
+}
+export -f run_cmd
+
+# HDD Tools
+menu_hdd() {
+	RET="safeaccess_manager\n"
+	RET+="SafeAccess Manager\n"
+	RET+="(Data Recovery) Set writeblocking to your desired drive.\n"
+	RET+="testdisk_wizard\n"
+	RET+="Testdisk\n"
+	RET+="(Data Recovery) Recover lost partitions or corrupted filesystems.\n"
+	RET+="photorec_wizard\n"
+	RET+="PhotoRec\n"
+	RET+="(Data Recovery) Recover lost files from hard disk and CD-ROM.\n"
+	RET+="ddrescue_wizard\n"
+	RET+="Ddrescue\n"
+	RET+="(Data Recovery) GNU Data Recovery tool.\n"
+	RET+="gparted\n"
+	RET+="GParted\n"
+	RET+="(Partition) GUI-Based GNU parted.\n"
+	RET+="fdisk_launcher\n"
+	RET+="Fdisk\n"
+	RET+="(Partition) Console-based partitioner.\n"
+	RET+="partformatter\n"
+	RET+="PartFormatter\n"
+	RET+="(Partition) GUI-Based partition formatter.\n"
+	RET+="gsmartcontrol\n"
+	RET+="GSmartControl\n"
+	RET+="(Diagnostic) Inspect and control S.M.A.R.T information.\n"
+	RET+="filesyscheck\n"
+	RET+="FileSysCheck\n"
+	RET+="(Diagnostic) Inspect and checking filesystems.\n"
+	RET+="clonezilla_launcher\n"
+	RET+="Clonezilla\n"
+	RET+="(Imaging) Partition and disk imaging/cloning program.\n"
+	RET+="fsarchiver_wizard\n"
+	RET+="FSArchiver\n"
+	RET+="(Imaging) Save and restore contents of a filesystem into compressed archive file.\n"
+	RET+="ddclonewizard\n"
+	RET+="DDclonewizard\n"
+	RET+="(Imaging) GUI-based to dd command, RAW imaging/cloning.\n"
+	RET+="ddzero\n"
+	RET+="DDzero\n"
+	RET+="(Destroy) Erase harddisk with zero byte.\n"
+	RET+="wipewizard\n"
+	RET+="WipeWizard\n"
+	RET+="(Destroy) GUI-Based to wipe command, wipe data on harddisk.\n"
+	echo -e $RET
+}
+export -f menu_hdd
+menu_hdd |\
+    yad --plug=$KEY --tabnum=1 \
+        --list --column="Command" --column="Name" --column="Description" --dclick-action='bash -c "run_cmd %s"' &
+
+# OS Maintenance
+menu_main() {
+	RET="chroot_rescue\n"
+	RET+="Chroot Rescue\n"
+	RET+="(Linux) Chroot into local linux system.\n"
+	RET+="chntpw_wizard\n"
+	RET+="Chntpw\n"
+	RET+="(Windows) Change/Blank user password of windows system.\n"
+	echo -e $RET
+}
+export -f menu_main
+menu_main |\
+    yad --plug=$KEY --tabnum=2 \
+        --list --column="Command" --column="Name" --column="Description" --dclick-action='bash -c "run_cmd %s"' &
+
+# SYS Diagnostic
+menu_sys() {
+	RET="hardinfo\n"
+	RET+="HardInfo\n"
+	RET+="(Information/Benchmark) Inspect system information.\n"
+	RET+="sysinfo\n"
+	RET+="SysInfo\n"
+	RET+="(Information) Inspect system information, powered by inxi.\n"
+	RET+="pupsysinfo\n"
+	RET+="PupSysInfo\n"
+	RET+="(Information) Puppy Linux system inspector.\n"
+	echo -e $RET
+}
+export -f menu_sys
+menu_sys |\
+    yad --plug=$KEY --tabnum=3 \
+        --list --column="Command" --column="Name" --column="Description" --dclick-action='bash -c "run_cmd %s"' &
+
+# NET Tools
+menu_net() {
+	RET="palemoon\n"
+	RET+="Palemoon\n"
+	RET+="(Web browser) Palemoon browser based on firefox.\n"
+	RET+="ipinfo\n"
+	RET+="IPInfo\n"
+	RET+="(Information) Inspect network information.\n"
+	echo -e $RET
+}
+export -f menu_net
+menu_net |\
+    yad --plug=$KEY --tabnum=4 \
+        --list --column="Command" --column="Name" --column="Description" --dclick-action='bash -c "run_cmd %s"' &
+
+# Other
+menu_other() {
+	RET="lxterminal\n"
+	RET+="LXTerminal\n"
+	RET+="(Terminal) LXDE Terminal.\n"
+	RET+="urxvt\n"
+	RET+="Urxvt\n"
+	RET+="(Terminal) The old classic urxvt terminal."
+	echo -e $RET
+}
+export -f menu_other
+menu_other |\
+    yad --plug=$KEY --tabnum=5 \
+        --list --column="Command" --column="Name" --column="Description" --dclick-action='bash -c "run_cmd %s"' &
+
+# About
+yad --plug=$KEY --tabnum=6 \
+        --text-info < $HOME/ABOUT &
+
+# Main Dialog
+TXT="\\t<b>Welcome!</b>\\n\\n"
+TXT+="\\tYou're now running RescuePup on $(hostname)\\n"
+TXT+="\\tKernel: $(uname -sr)\\n\\n"
+TXT+="\\tDouble-click selected tool to launch!\\n"
+
+yad --notebook --width=890 --height=450 --center --title="RescuePup - Toolbox" --text="$TXT" --button=gtk-close --key=$KEY \
+	--tab="HDD Tools" \
+	--tab="OS Maintenance" \
+	--tab="SYS Diagnostic" \
+	--tab="NET Tools" \
+	--tab="Others" \
+	--tab="About" \
+	--active-tab=${1:-1}
