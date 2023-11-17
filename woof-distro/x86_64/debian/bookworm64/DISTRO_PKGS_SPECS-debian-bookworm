@@ -206,6 +206,7 @@ yes|xdg-desktop-portal-gtk|xdg-desktop-portal-gtk|exe,dev,doc,nls||deps:yes
 yes|xdg-utils|xdg-utils|exe,dev,doc,nls||deps:yes
 "
 
+# DEV
 PKGS_SPECS_TABLE="$PKGS_SPECS_TABLE
 yes|autoconf|autoconf|exe>dev,dev,doc>dev,nls>dev||deps:yes
 yes|automake|automake,autotools-dev|exe>dev,dev,doc>dev,nls>dev||deps:yes
@@ -254,3 +255,15 @@ elif [ "$DISTRO_TARGETARCH" = "x86" -o "$DISTRO_TARGETARCH" = "x86_64" ] && [ "$
 yes|non-free-firmware-pc|amd64-microcode,bluez-firmware,firmware-amd-graphics,firmware-atheros,firmware-brcm80211,firmware-intel-sound,firmware-iwlwifi,firmware-linux,firmware-linux-nonfree,firmware-realtek,firmware-sof-signed,intel-microcode|exe,dev,doc,nls||deps:yes # based on live-task-non-free-firmware-pc
 "
 fi
+
+# TOOLS
+PKGS_SPECS_TABLE="$PKGS_SPECS_TABLE
+yes|testdisk|testdisk|exe,dev,doc,nls||deps:yes
+yes|photorec|photorec|exe,dev,doc,nls||deps:yes
+yes|ddrescue|ddrescue,ddrescueview|exe,dev,doc,nls||deps:yes
+yes|gsmartcontrol|gsmartcontrol|exe,dev,doc,nls||deps:yes
+yes|clonezilla|clonezilla|exe,dev,doc,nls||deps:yes
+yes|fsarchiver|fsarchiver|exe,dev,doc,nls||deps:yes
+yes|chntpw|chntpw|exe,dev,doc,nls||deps:yes
+yes|PupSysInfo||exe,dev,doc,nls||
+"
