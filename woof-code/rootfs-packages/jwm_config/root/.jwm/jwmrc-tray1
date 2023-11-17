@@ -6,9 +6,10 @@
     <TrayButton popup="Show desktop" icon="desktop.svg">showdesktop</TrayButton>
     <TrayButton popup="Browser" icon="internet.svg" border="true">exec:defaultbrowser</TrayButton>
     <TrayButton popup="Terminal" icon="terminal.svg" border="true">exec:defaultterminal</TrayButton>
+    <TrayButton popup="Toolbox" icon="terminal.svg" border="true">exec:toolbox</TrayButton>
     <Pager/>
     <TaskList maxwidth="200"/>
     <Dock/>
-    <Clock format="%H:%M">root:7</Clock>
+    <Clock format="%H:%M:%S">root:7</Clock>
 </Tray>
 </JWM>
