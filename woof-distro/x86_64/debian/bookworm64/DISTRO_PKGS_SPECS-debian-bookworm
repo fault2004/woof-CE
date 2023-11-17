@@ -264,5 +264,4 @@ yes|gsmartcontrol|gsmartcontrol|exe,dev,doc,nls||deps:yes
 yes|clonezilla|clonezilla|exe,dev,doc,nls||deps:yes
 yes|fsarchiver|fsarchiver|exe,dev,doc,nls||deps:yes
 yes|chntpw|chntpw|exe,dev,doc,nls||deps:yes
-yes|PupSysInfo||exe,dev,doc,nls||
 "

@@ -103,9 +103,6 @@ menu_sys() {
 	RET+="sysinfo\n"
 	RET+="SysInfo\n"
 	RET+="(Information) Inspect system information, powered by inxi.\n"
-	RET+="pupsysinfo\n"
-	RET+="PupSysInfo\n"
-	RET+="(Information) Puppy Linux system inspector.\n"
 	echo -e $RET
 }
 export -f menu_sys
