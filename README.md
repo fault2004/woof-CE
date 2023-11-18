@@ -2,6 +2,14 @@
 
 RescuePup builder - based on woof-CE (ba11f1801f260f20e2d6f873879e3d0aa90d54c0), Using Debian as compat distro.
 
+# Thanks to
+
+01micko for Woof-CE
+
+Barry Kauler for creating Puppy Linux and woof2 build system and Puppy community. 
+
+msuhanov for write blocker patch and userspace tools.
+
 # Building a Puppy: using GitHub Actions
 
 Puppy can be built directly on GitHub, saving the hassle of preparing a suitable build environment on a fast machine with adequate storage.
