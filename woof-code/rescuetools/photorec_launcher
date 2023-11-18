@@ -11,7 +11,18 @@ done
 
 TXT="Choose a disk..."
 
-RET=$(cat /tmp/photorec.listdisks | yad --notebook --width=450 --height=250 --center --title="Photorec Launcher" --text="$TXT" --button=gtk-ok --button=gtk-close --list --column="Block" --column="Details")
-if [ $? -eq 0 ]; then lxterminal -e "photorec ${RET%%|*}"; fi
+RET=$(cat /tmp/photorec.listdisks | yad --notebook --width=450 --height=250 --center --title="Photorec Launcher" --text="$TXT" --button=gtk-ok --button=gtk-close --list --column="Disk" --column="Details")
+REL=$?
+
+if [ $REL -eq 1 ]; then exit; fi
+
+if [ -z "${RET}" ]; then
+	TXT="Please select a disk!"
+	yad --width=300 --center --title="Photorec Launcher" --text="$TXT" --button=gtk-close:0
+	photorec_launcher &
+	exit
+fi
+
+if [ $REL -eq 0 ]; then lxterminal -e "photorec ${RET%%|*}"; fi
 
 rm -f /tmp/photorec.listdisks
