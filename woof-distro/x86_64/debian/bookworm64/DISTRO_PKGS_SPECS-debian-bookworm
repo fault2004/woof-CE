@@ -269,7 +269,6 @@ yes|xfsprogs|xfsprogs|exe,dev,doc,nls||deps:yes
 yes|btrfs-progs|btrfs-progs|exe,dev,doc,nls||deps:yes
 yes|reiserfsprogs|reiserfsprogs,reiser4progs|exe,dev,doc,nls||deps:yes
 yes|jfsutils|jfsutils|exe,dev,doc,nls||deps:yes
-yes|ntfsprogs|ntfsprogs|exe,dev,doc,nls||deps:yes
 yes|minicom|minicom|exe,dev,doc,nls||deps:yes
 yes|cryptsetup|cryptsetup|exe,dev,doc,nls||deps:yes
 yes|nvme-cli|nvme-cli|exe,dev,doc,nls||deps:yes
