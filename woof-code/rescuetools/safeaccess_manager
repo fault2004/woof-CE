@@ -14,10 +14,20 @@ TXT="Choose a disk to inspect STATUS, set RW or RO..."
 RET=$(cat /tmp/safeaccess.listdisks | \
 	yad --width=450 --height=250 --center --title="SafeAccess Manager" \
 	--text="$TXT" --button="STATUS":2 --button="RW":6 --button="RO":4 --button=gtk-close:0 \
-	--list --column="Block" --column="Details")
+	--list --column="Disk" --column="Details")
 REL=$?
 BLOCKDEVPATH=${RET%%|*}
 BLOCKDEV=${BLOCKDEVPATH##*/}
+
+if [ $REL -eq 0 ]; then exit; fi
+
+if [[ -z "${BLOCKDEV}" && -z "${BLOCKDEVPATH}" ]]; then
+	TXT="Please select a disk!"
+	yad --width=300 --center --title="SafeAccess Manager" --text="$TXT" --button=gtk-close:0
+	rm -f /tmp/safeaccess.listdisks
+	safeaccess_manager &
+	exit
+fi
 
 if [ "$(cat /sys/block/$BLOCKDEV/ro)" = "1" ]; then LOCKED=1; else LOCKED=0; fi
 
@@ -35,7 +45,7 @@ case $REL in
 	6)
 		case $LOCKED in
 			1)
-				wrtblk-disable /dev/$BLOCKDEV
+				wrtblk-disable $BLOCKDEV
 				REL=$?
 				if [ $REL -eq 0 ]; then TXT="Successful!"; else TXT="Failed! - Check wrtblk command."; fi
 				yad --width=300 --center --title="SafeAccess Manager" --text="$TXT" --button=gtk-close:0
@@ -62,7 +72,7 @@ case $REL in
 				exit
 			;;
 			0)
-				wrtblk /dev/$BLOCKDEV
+				wrtblk $BLOCKDEV
 				REL=$?
 				if [ $REL -eq 0 ]; then TXT="Successful!"; else TXT="Failed! - Check wrtblk command."; fi
 				yad --width=300 --center --title="SafeAccess Manager" --text="$TXT" --button=gtk-close:0
