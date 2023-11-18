@@ -60,6 +60,10 @@ mkdir -p sandbox3
 #now build rootfs-complete, the main filesystem...
 echo
 echo "Now building sandbox3/rootfs-complete, with the complete filesystem..."
+
+echo "Copying rescuetools into rootfs-skeleton"
+cp -a rescuetools/* rootfs-skeleton/usr/sbin/
+
 if [ -n "$GITHUB_ACTIONS" ]; then
 	echo '#!/bin/sh -x' > sandbox3/pinstall.sh
 else

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Get list partition and disks
+rm -f /tmp/fdisk.listdisks
+for disk in /dev/sd*[a-z]; do
+	echo $disk >> /tmp/fdisk.listdisks
+	blkid $disk >> /tmp/fdisk.listdisks
+done
+
+# Main dialog
+
+TXT="Choose a disk..."
+
+RET=$(cat /tmp/fdisk.listdisks | yad --notebook --width=450 --height=250 --center --title="Gdisk Launcher" --text="$TXT" --button=gtk-ok --button=gtk-close --list --column="Block" --column="Details")
+if [ $? -eq 0 ]; then lxterminal -e "gdisk ${RET%%|*}"; fi
+
+rm -f /tmp/fdisk.listdisks

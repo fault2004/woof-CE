@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Get list partition and disks
+rm -f /tmp/testdisk.listdisks
+for disk in /dev/sd*[a-z]; do
+	echo $disk >> /tmp/testdisk.listdisks
+	blkid $disk >> /tmp/testdisk.listdisks
+done
+
+# Main dialog
+
+TXT="Choose a disk..."
+
+RET=$(cat /tmp/testdisk.listdisks | yad --notebook --width=450 --height=250 --center --title="Testdisk Launcher" --text="$TXT" --button=gtk-ok --button=gtk-close --list --column="Block" --column="Details")
+if [ $? -eq 0 ]; then lxterminal -e "testdisk ${RET%%|*}"; fi
+
+rm -f /tmp/testdisk.listdisks
