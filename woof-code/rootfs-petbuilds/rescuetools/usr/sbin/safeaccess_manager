@@ -45,6 +45,8 @@ case $REL in
 	6)
 		case $LOCKED in
 			1)
+				sync
+				umount -l /mnt/$BLOCKDEV
 				wrtblk-disable $BLOCKDEV
 				REL=$?
 				if [ $REL -eq 0 ]; then TXT="Successful!"; else TXT="Failed! - Check wrtblk command."; fi
@@ -72,6 +74,8 @@ case $REL in
 				exit
 			;;
 			0)
+				sync
+				umount -l /mnt/$BLOCKDEV
 				wrtblk $BLOCKDEV
 				REL=$?
 				if [ $REL -eq 0 ]; then TXT="Successful!"; else TXT="Failed! - Check wrtblk command."; fi
