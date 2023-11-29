@@ -1,0 +1,10 @@
+download() {
+    [ -f whdd-3.0.1.tar.gz ] || wget -t 3 -T 60 -O whdd-3.0.1.tar.gz https://github.com/whdd/whdd/archive/refs/tags/3.0.1.tar.gz
+}
+
+build() {
+    tar -xzf whdd-3.0.1.tar.gz
+    cd whdd-3.0.1
+    make
+    make install
+}
