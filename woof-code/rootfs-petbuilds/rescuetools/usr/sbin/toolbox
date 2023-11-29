@@ -72,6 +72,9 @@ menu_hdd() {
 	RET+="photorec_launcher\n"
 	RET+="PhotoRec\n"
 	RET+="(Data Recovery) Recover lost files from hard disk and CD-ROM.\n"
+	RET+="whdd_launcher\n"
+	RET+="Whdd\n"
+	RET+="(Data Recovery) HDD diagnostic and data recovery tool for Linux\n"	
 	RET+="gparted\n"
 	RET+="GParted\n"
 	RET+="(Partition) GUI-Based GNU parted.\n"
@@ -80,7 +83,10 @@ menu_hdd() {
 	RET+="(Partition) Console-based partitioner.\n"
 	RET+="gsmartcontrol\n"
 	RET+="GSmartControl\n"
-	RET+="(Diagnostic) Inspect and control S.M.A.R.T information.\n"
+	RET+="(Diagnostic) Inspect drive and control S.M.A.R.T information.\n"
+	RET+="nwipe_launcher\n"
+	RET+="Nwipe\n"
+	RET+="(Destroy) Secure disk eraser.\n"
 	echo -e $RET
 }
 export -f menu_hdd
@@ -89,14 +95,14 @@ menu_hdd |\
         --list --column="Command" --column="Name" --column="Description" --dclick-action='bash -c "run_cmd %s"' &
 
 # OS Maintenance
-menu_main() {
-	RET=""
-	echo -e $RET
-}
-export -f menu_main
-menu_main |\
-    yad --plug=$KEY --tabnum=2 \
-        --list --column="Command" --column="Name" --column="Description" --dclick-action='bash -c "run_cmd %s"' &
+#menu_main() {
+	#RET=""
+	#echo -e $RET
+#}
+#export -f menu_main
+#menu_main |\
+    #yad --plug=$KEY --tabnum=2 \
+        #--list --column="Command" --column="Name" --column="Description" --dclick-action='bash -c "run_cmd %s"' &
 
 # SYS Diagnostic
 menu_sys() {
@@ -107,14 +113,14 @@ menu_sys() {
 }
 export -f menu_sys
 menu_sys |\
-    yad --plug=$KEY --tabnum=3 \
+    yad --plug=$KEY --tabnum=2 \
         --list --column="Command" --column="Name" --column="Description" --dclick-action='bash -c "run_cmd %s"' &
 
 # NET Tools
 menu_net() {
-	RET="palemoon\n"
-	RET+="Palemoon\n"
-	RET+="(Web browser) Palemoon browser based on firefox.\n"
+	RET="firefox-esr\n"
+	RET+="Firefox ESR\n"
+	RET+="(Web browser) Mozilla Firefox Browser.\n"
 	RET+="ipinfo\n"
 	RET+="IPInfo\n"
 	RET+="(Information) Inspect network information.\n"
@@ -122,7 +128,7 @@ menu_net() {
 }
 export -f menu_net
 menu_net |\
-    yad --plug=$KEY --tabnum=4 \
+    yad --plug=$KEY --tabnum=3 \
         --list --column="Command" --column="Name" --column="Description" --dclick-action='bash -c "run_cmd %s"' &
 
 # Other
@@ -134,11 +140,11 @@ menu_other() {
 }
 export -f menu_other
 menu_other |\
-    yad --plug=$KEY --tabnum=5 \
+    yad --plug=$KEY --tabnum=4 \
         --list --column="Command" --column="Name" --column="Description" --dclick-action='bash -c "run_cmd %s"' &
 
 # About
-yad --plug=$KEY --tabnum=6 \
+yad --plug=$KEY --tabnum=5 \
         --text-info < $HOME/ABOUT &
 
 # Main Dialog
@@ -149,7 +155,6 @@ TXT+="\\tDouble-click selected tool to launch!\\n"
 
 yad --notebook --width=890 --height=500 --center --title="RescuePup - Toolbox" --text="$TXT" --button=gtk-close --key=$KEY \
 	--tab="HDD Tools" \
-	--tab="OS Maintenance" \
 	--tab="SYS Diagnostic" \
 	--tab="NET Tools" \
 	--tab="Others" \

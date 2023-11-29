@@ -205,6 +205,7 @@ yes|sensible-utils|sensible-utils|exe,dev,doc,nls||deps:yes
 yes|xdg-desktop-portal-gtk|xdg-desktop-portal-gtk|exe,dev,doc,nls||deps:yes
 yes|xdg-utils|xdg-utils|exe,dev,doc,nls||deps:yes
 yes|nwipe-deps|libconfig-dev,libconfig++-dev|exe,dev,doc,nls||deps:yes
+yes|firefox-esr|firefox-esr|exe,dev,doc,nls||deps:yes
 "
 
 # DEV
