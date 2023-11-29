@@ -21,11 +21,43 @@ ______________________________________________________
 
 Thank you for using RescuePup!
 RescuePup is a Live CD/DVD/USB Linux distribution rescue toolbox based on Puppy Linux (Debian).
+Built from a custom woof-CE.
 The system is running entirely in RAM.
 
 Website: https://rescuepup.sourceforge.io
-Github (source code): https://github.com/rescuepuplinux
-Made in Thailand with love, fault2004.
+Github (source code): https://github.com/rescuepuplinux/woof-CE (GPLv2)
+Made in Thailand with love.
+
+2023 (c) Supphakit Duanghoy (fault2004)
+
+Included Tools:
+efibootmgr (x86_64/64bit ISO only)
+gnu-efi (x86_64/64bit ISO only)
+inxi
+testdisk
+gparted
+gddrescue
+gsmartcontrol
+fsarchiver
+cloud-guest-utils
+chntpw
+lvm
+ntfs-3g
+xfsprogs
+btrfs-progs
+reiserfsprogs
+jfsutils
+exfatprogs
+f2fs-tools
+e2fsprogs
+dosfstools
+hdparm
+minicom
+cryptsetup
+nvme-cli
+hardinfo
+nwipe
+whdd
 EOF
 fi
 
@@ -40,36 +72,15 @@ menu_hdd() {
 	RET+="photorec_launcher\n"
 	RET+="PhotoRec\n"
 	RET+="(Data Recovery) Recover lost files from hard disk and CD-ROM.\n"
-	RET+="ddrescue_wizard\n"
-	RET+="Ddrescue\n"
-	RET+="(Data Recovery) GNU Data Recovery tool.\n"
 	RET+="gparted\n"
 	RET+="GParted\n"
 	RET+="(Partition) GUI-Based GNU parted.\n"
 	RET+="fdisk_launcher\n"
 	RET+="Fdisk\n"
 	RET+="(Partition) Console-based partitioner.\n"
-	RET+="partformatter\n"
-	RET+="PartFormatter\n"
-	RET+="(Partition) GUI-Based partition formatter.\n"
 	RET+="gsmartcontrol\n"
 	RET+="GSmartControl\n"
 	RET+="(Diagnostic) Inspect and control S.M.A.R.T information.\n"
-	RET+="filesyscheck\n"
-	RET+="FileSysCheck\n"
-	RET+="(Diagnostic) Inspect and checking filesystems.\n"
-	RET+="fsarchiver_wizard\n"
-	RET+="FSArchiver\n"
-	RET+="(Imaging) Save and restore contents of a filesystem into compressed archive file.\n"
-	RET+="ddclonewizard\n"
-	RET+="DDclonewizard\n"
-	RET+="(Imaging) GUI-based to dd command, RAW imaging/cloning.\n"
-	RET+="ddzero\n"
-	RET+="DDzero\n"
-	RET+="(Destroy) Erase harddisk with zero byte.\n"
-	RET+="wipewizard\n"
-	RET+="WipeWizard\n"
-	RET+="(Destroy) GUI-Based to wipe command, wipe data on harddisk.\n"
 	echo -e $RET
 }
 export -f menu_hdd
@@ -79,12 +90,7 @@ menu_hdd |\
 
 # OS Maintenance
 menu_main() {
-	RET="chroot_rescue\n"
-	RET+="Chroot Rescue\n"
-	RET+="(Linux) Chroot into local linux system.\n"
-	RET+="chntpw_wizard\n"
-	RET+="Chntpw\n"
-	RET+="(Windows) Change/Blank user password of windows system.\n"
+	RET=""
 	echo -e $RET
 }
 export -f menu_main
@@ -97,9 +103,6 @@ menu_sys() {
 	RET="hardinfo\n"
 	RET+="HardInfo\n"
 	RET+="(Information/Benchmark) Inspect system information.\n"
-	RET+="sysinfo\n"
-	RET+="SysInfo\n"
-	RET+="(Information) Inspect system information, powered by inxi.\n"
 	echo -e $RET
 }
 export -f menu_sys
