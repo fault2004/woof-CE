@@ -1,13 +1,45 @@
  ____  ____  ____   ___  _  _  ____  ____  _  _  ____ 
-(  _ \(  __)/ ___) / __)/ )( \(  __)(  _ \/ )( \(  _ \\
+(  _ \(  __)/ ___) / __)/ )( \(  __)(  _ \/ )( \(  _ \
  )   / ) _) \___ \( (__ ) \/ ( ) _)  ) __/) \/ ( ) __/
 (__\_)(____)(____/ \___)\____/(____)(__)  \____/(__)  
 ______________________________________________________
 
 Thank you for using RescuePup!
 RescuePup is a Live CD/DVD/USB Linux distribution rescue toolbox based on Puppy Linux (Debian).
+Built from a custom woof-CE.
 The system is running entirely in RAM.
 
 Website: https://rescuepup.sourceforge.io
-Github (source code): https://github.com/rescuepuplinux
-Made in Thailand with love, fault2004.
+Github (source code): https://github.com/rescuepuplinux/woof-CE (GPLv2)
+Made in Thailand with love.
+
+2023 (c) Supphakit Duanghoy (fault2004)
+
+Included Tools:
+efibootmgr (x86_64/64bit ISO only)
+gnu-efi (x86_64/64bit ISO only)
+inxi
+testdisk
+gparted
+gddrescue
+gsmartcontrol
+fsarchiver
+cloud-guest-utils
+chntpw
+lvm
+ntfs-3g
+xfsprogs
+btrfs-progs
+reiserfsprogs
+jfsutils
+exfatprogs
+f2fs-tools
+e2fsprogs
+dosfstools
+hdparm
+minicom
+cryptsetup
+nvme-cli
+hardinfo
+nwipe
+whdd
