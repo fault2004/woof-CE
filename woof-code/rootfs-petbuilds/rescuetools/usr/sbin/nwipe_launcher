@@ -1,0 +1,2 @@
+#!/bin/bash
+lxterminal -e "nwipe --exclude=/dev/zram0,/dev/sr0"
