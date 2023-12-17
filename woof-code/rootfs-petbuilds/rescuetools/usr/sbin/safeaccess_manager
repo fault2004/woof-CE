@@ -7,9 +7,16 @@ for disk in /dev/sd*[a-z]; do
 	blkid $disk >> /tmp/safeaccess.listdisks
 done
 
+# Unmount all disk partitions
+umountall() {
+	for disk in /dev/$1[1-9]; do
+		umount -fl /dev/$disk
+	done
+}
+
 # Main dialog
 
-TXT="Choose a disk to inspect STATUS, set RW or RO..."
+TXT="Choose a disk to inspect STATUS, set RW or RO after you finished copying/moving and other operation."
 
 RET=$(cat /tmp/safeaccess.listdisks | \
 	yad --width=450 --height=250 --center --title="SafeAccess Manager" \
@@ -46,7 +53,7 @@ case $REL in
 		case $LOCKED in
 			1)
 				sync
-				umount -l /mnt/$BLOCKDEV
+				umountall $BLOCKDEV
 				wrtblk-disable $BLOCKDEV
 				REL=$?
 				if [ $REL -eq 0 ]; then TXT="Successful!"; else TXT="Failed! - Check wrtblk command."; fi
@@ -75,7 +82,7 @@ case $REL in
 			;;
 			0)
 				sync
-				umount -l /mnt/$BLOCKDEV
+				umountall $BLOCKDEV
 				wrtblk $BLOCKDEV
 				REL=$?
 				if [ $REL -eq 0 ]; then TXT="Successful!"; else TXT="Failed! - Check wrtblk command."; fi
