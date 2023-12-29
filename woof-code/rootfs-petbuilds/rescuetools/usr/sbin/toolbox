@@ -10,63 +10,9 @@ run_cmd() {
 }
 export -f run_cmd
 
-# Create ABOUT when this file is not found, required.
-if [ ! -f "$HOME/ABOUT" ]; then
-cat <<EOF > $HOME/ABOUT
- ____  ____  ____   ___  _  _  ____  ____  _  _  ____ 
-(  _ \(  __)/ ___) / __)/ )( \(  __)(  _ \/ )( \(  _ \\
- )   / ) _) \___ \( (__ ) \/ ( ) _)  ) __/) \/ ( ) __/
-(__\_)(____)(____/ \___)\____/(____)(__)  \____/(__)  
-______________________________________________________
-
-Thank you for using RescuePup!
-RescuePup is a Live CD/DVD/USB Linux distribution rescue toolbox based on Puppy Linux (Debian).
-Built from a custom woof-CE.
-The system is running entirely in RAM.
-
-Website: https://rescuepup.sourceforge.io
-Github (source code): https://github.com/rescuepuplinux/woof-CE (GPLv2)
-Made in Thailand with love.
-
-2023 (c) Supphakit Duanghoy (fault2004)
-
-Included Tools:
-efibootmgr (x86_64/64bit ISO only)
-gnu-efi (x86_64/64bit ISO only)
-inxi
-testdisk
-gparted
-gddrescue
-gsmartcontrol
-fsarchiver
-cloud-guest-utils
-chntpw
-lvm
-ntfs-3g
-xfsprogs
-btrfs-progs
-reiserfsprogs
-jfsutils
-exfatprogs
-f2fs-tools
-e2fsprogs
-dosfstools
-hdparm
-minicom
-cryptsetup
-nvme-cli
-hardinfo
-nwipe
-whdd
-EOF
-fi
-
 # HDD Tools
 menu_hdd() {
-	RET="safeaccess_manager\n"
-	RET+="SafeAccess Manager\n"
-	RET+="(Data Recovery) Set writeblocking to your desired drive.\n"
-	RET+="testdisk_launcher\n"
+	RET="testdisk_launcher\n"
 	RET+="Testdisk\n"
 	RET+="(Data Recovery) Recover lost partitions or corrupted filesystems.\n"
 	RET+="photorec_launcher\n"
@@ -74,7 +20,7 @@ menu_hdd() {
 	RET+="(Data Recovery) Recover lost files from hard disk and CD-ROM.\n"
 	RET+="whdd_launcher\n"
 	RET+="Whdd\n"
-	RET+="(Data Recovery) HDD diagnostic and data recovery tool for Linux\n"	
+	RET+="(Data Recovery) HDD diagnostic and data recovery tool for Linux.\n"	
 	RET+="gparted\n"
 	RET+="GParted\n"
 	RET+="(Partition) GUI-Based GNU parted.\n"
@@ -84,9 +30,21 @@ menu_hdd() {
 	RET+="gsmartcontrol\n"
 	RET+="GSmartControl\n"
 	RET+="(Diagnostic) Inspect drive and control S.M.A.R.T information.\n"
+	RET+="bonnie_launcher\n"
+	RET+="Bonnie++\n"
+	RET+="(Benchmark) Disk and filesystem bechmarking tool.\n"
+	RET+="iozone_launcher\n"
+	RET+="IOzone\n"
+	RET+="(Benchmark) Filesystem benchmark tool.\n"
+	RET+="fio_launcher\n"
+	RET+="Fio\n"
+	RET+="(Benchmark) Flexible I/O tester.\n"
 	RET+="nwipe_launcher\n"
 	RET+="Nwipe\n"
-	RET+="(Destroy) Secure disk eraser.\n"
+	RET+="(Destroy) DBAN for Linux.\n"
+	RET+="ssderaser\n"
+	RET+="SSDeraser\n"
+	RET+="(Destroy) SSD secure wipe. (NOT FOR HDD)\n"
 	echo -e $RET
 }
 export -f menu_hdd
@@ -95,14 +53,14 @@ menu_hdd |\
         --list --column="Command" --column="Name" --column="Description" --dclick-action='bash -c "run_cmd %s"' &
 
 # OS Maintenance
-#menu_main() {
-	#RET=""
-	#echo -e $RET
-#}
-#export -f menu_main
-#menu_main |\
-    #yad --plug=$KEY --tabnum=2 \
-        #--list --column="Command" --column="Name" --column="Description" --dclick-action='bash -c "run_cmd %s"' &
+menu_main() {
+	RET=""
+	echo -e $RET
+}
+export -f menu_main
+menu_main |\
+    yad --plug=$KEY --tabnum=2 \
+        --list --column="Command" --column="Name" --column="Description" --dclick-action='bash -c "run_cmd %s"' &
 
 # SYS Diagnostic
 menu_sys() {
@@ -113,7 +71,7 @@ menu_sys() {
 }
 export -f menu_sys
 menu_sys |\
-    yad --plug=$KEY --tabnum=2 \
+    yad --plug=$KEY --tabnum=3 \
         --list --column="Command" --column="Name" --column="Description" --dclick-action='bash -c "run_cmd %s"' &
 
 # NET Tools
@@ -128,7 +86,7 @@ menu_net() {
 }
 export -f menu_net
 menu_net |\
-    yad --plug=$KEY --tabnum=3 \
+    yad --plug=$KEY --tabnum=4 \
         --list --column="Command" --column="Name" --column="Description" --dclick-action='bash -c "run_cmd %s"' &
 
 # Other
@@ -140,12 +98,12 @@ menu_other() {
 }
 export -f menu_other
 menu_other |\
-    yad --plug=$KEY --tabnum=4 \
+    yad --plug=$KEY --tabnum=5 \
         --list --column="Command" --column="Name" --column="Description" --dclick-action='bash -c "run_cmd %s"' &
 
 # About
-yad --plug=$KEY --tabnum=5 \
-        --text-info < $HOME/ABOUT &
+yad --plug=$KEY --tabnum=6 \
+        --text-info < /etc/about &
 
 # Main Dialog
 TXT="\\t<b>Welcome!</b>\\n\\n"
@@ -155,6 +113,7 @@ TXT+="\\tDouble-click selected tool to launch!\\n"
 
 yad --notebook --width=890 --height=500 --center --title="RescuePup - Toolbox" --text="$TXT" --button=gtk-close --key=$KEY \
 	--tab="HDD Tools" \
+	--tab="OS Maintenance" \
 	--tab="SYS Diagnostic" \
 	--tab="NET Tools" \
 	--tab="Others" \
