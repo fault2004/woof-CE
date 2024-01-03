@@ -1,6 +1,8 @@
 #!/bin/bash
 #toolbox gui
 
+. /etc/DISTRO_SPECS
+
 KEY=$RANDOM
 
 # Run (fix gui/console program when launching)
@@ -54,12 +56,29 @@ menu_hdd |\
 
 # OS Maintenance
 menu_main() {
-	RET=""
+	RET="linuxchroot\n"
+	RET+="LinuxChroot\n"
+	RET+="(Linux) Chroot rescue\n"
+	RET+="winreset\n"
+	RET+="WinReset\n"
+	RET+="(Windows) Reset Windows password (chntpw front-end)"
 	echo -e $RET
 }
 export -f menu_main
 menu_main |\
     yad --plug=$KEY --tabnum=2 \
+        --list --column="Command" --column="Name" --column="Description" --dclick-action='bash -c "run_cmd %s"' &
+
+# Boot Tools
+menu_boot() {
+	RET="bootbk\n"
+	RET+="BootBk\n"
+	RET+="(Boot) Backup and Restore MBR\n"
+	echo -e $RET
+}
+export -f menu_boot
+menu_boot |\
+    yad --plug=$KEY --tabnum=3 \
         --list --column="Command" --column="Name" --column="Description" --dclick-action='bash -c "run_cmd %s"' &
 
 # SYS Diagnostic
@@ -71,7 +90,7 @@ menu_sys() {
 }
 export -f menu_sys
 menu_sys |\
-    yad --plug=$KEY --tabnum=3 \
+    yad --plug=$KEY --tabnum=4 \
         --list --column="Command" --column="Name" --column="Description" --dclick-action='bash -c "run_cmd %s"' &
 
 # NET Tools
@@ -86,7 +105,7 @@ menu_net() {
 }
 export -f menu_net
 menu_net |\
-    yad --plug=$KEY --tabnum=4 \
+    yad --plug=$KEY --tabnum=5 \
         --list --column="Command" --column="Name" --column="Description" --dclick-action='bash -c "run_cmd %s"' &
 
 # Other
@@ -98,22 +117,23 @@ menu_other() {
 }
 export -f menu_other
 menu_other |\
-    yad --plug=$KEY --tabnum=5 \
+    yad --plug=$KEY --tabnum=6 \
         --list --column="Command" --column="Name" --column="Description" --dclick-action='bash -c "run_cmd %s"' &
 
 # About
-yad --plug=$KEY --tabnum=6 \
+yad --plug=$KEY --tabnum=7 \
         --text-info < /etc/about &
 
 # Main Dialog
 TXT="\\t<b>Welcome!</b>\\n\\n"
-TXT+="\\tYou're now running RescuePup on $(hostname)\\n"
+TXT+="\\tYou're now running ${DISTRO_NAME} ${DISTRO_VERSION}\\n"
 TXT+="\\tKernel: $(uname -sr)\\n\\n"
 TXT+="\\tDouble-click selected tool to launch!\\n"
 
 yad --notebook --width=890 --height=500 --center --title="RescuePup - Toolbox" --text="$TXT" --button=gtk-close --key=$KEY \
 	--tab="HDD Tools" \
 	--tab="OS Maintenance" \
+	--tab="Boot Tools" \
 	--tab="SYS Diagnostic" \
 	--tab="NET Tools" \
 	--tab="Others" \
