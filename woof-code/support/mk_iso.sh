@@ -56,10 +56,10 @@ background_image /boot/splash.png
 set timeout=10
 
 # https://help.ubuntu.com/community/Grub2/Displays
-color_normal=cyan/black
+color_normal=black/black
 #menu_color_highlight=black/light-gray
 menu_color_highlight=yellow/red
-menu_color_normal=light-gray/black
+menu_color_normal=black/black
 
 EOF
 }
@@ -71,10 +71,10 @@ prepend_loop() {
 loadfont /boot/grub/font.pf2
 
 # https://help.ubuntu.com/community/Grub2/Displays
-color_normal=cyan/black
+color_normal=black/black
 #menu_color_highlight=black/light-gray
 menu_color_highlight=yellow/red
-menu_color_normal=light-gray/black
+menu_color_normal=black/black
 
 EOF
 }
@@ -88,7 +88,7 @@ prepend_menu() {
 
 #color NORMAL            HIGHLIGHT       HELPTEXT       HEADING
 #       f/b               f/b              f/b           f/b
-color light-gray/black yellow/red cyan/black light-blue/black
+color black/black yellow/red black/black light-blue/black
 
 timeout 10
 default 0
@@ -174,14 +174,16 @@ title Help - Boot Params
 title
   root
 
+# Tools
+
 title Memtest86+ (32bit)
-  chainloader /boot/memtest32.bin
+  kernel /boot/memtest32.bin
 
 title Memtest86+ (64bit)
-  chainloader /boot/memtest64.bin
+  kernel /boot/memtest64.bin
 
 title Plop Boot Manager
-  chainloader /boot/plpbt.bin
+  kernel /boot/plpbt.bin
 
 title
   root
