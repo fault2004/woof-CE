@@ -148,7 +148,7 @@ EOF
 append_grub() {
 	outfile="$1"
 	cat >> $outfile <<EOF
-menuentry "Memtest86+" {
+menuentry "Memtest86+ v7.00" {
 	chainloader /EFI/boot/memtest64.efi
 }
 
@@ -176,13 +176,13 @@ title
 
 # Tools
 
-title Memtest86+ (32bit)
+title Memtest86+ v7.00 (32bit)
   kernel /boot/memtest32.bin
 
-title Memtest86+ (64bit)
+title Memtest86+ v7.00 (64bit)
   kernel /boot/memtest64.bin
 
-title Plop Boot Manager
+title Plop Boot Manager v.5.0.15
   kernel /boot/plpbt.bin
 
 title
