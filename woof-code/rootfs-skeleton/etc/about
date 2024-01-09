@@ -5,17 +5,17 @@
 ______________________________________________________
 
 Thank you for using RescuePup!
-RescuePup is a Live CD/DVD/USB Linux distribution rescue toolbox based on Puppy Linux (Debian).
-Built from a custom woof-CE.
-The system is running entirely in RAM.
+RescuePup, specialized Puppy Linux for rescuing system.
+A free and open-source live CD/DVD/USB/Ventoy On-RAM Linux environment for rescue purpose, powered by Puppy Linux.
 
-Website: https://rescuepup.sourceforge.io
+Website: https://rescuepuplinux.github.io
 Github (source code): https://github.com/rescuepuplinux/woof-CE (GPLv2)
 Made in Thailand with love.
 
 2023 (c) Supphakit Duanghoy (fault2004)
 
-Included Tools:
+Included Tools/Packages:
+rescuetools
 efibootmgr (x86_64/64bit ISO only)
 gnu-efi (x86_64/64bit ISO only)
 inxi
@@ -43,3 +43,6 @@ nvme-cli
 hardinfo
 nwipe
 whdd
+bonnie++
+iozone
+fio

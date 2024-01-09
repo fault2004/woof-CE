@@ -275,4 +275,7 @@ yes|jfsutils|jfsutils|exe,dev,doc,nls||deps:yes
 yes|minicom|minicom|exe,dev,doc,nls||deps:yes
 yes|cryptsetup|cryptsetup|exe,dev,doc,nls||deps:yes
 yes|nvme-cli|nvme-cli|exe,dev,doc,nls||deps:yes
+yes|bonnie++|bonnie++|exe,dev,doc,nls||deps:yes
+yes|iozone3|iozone3|exe,dev,doc,nls||deps:yes
+yes|fio|fio|exe,dev,doc,nls||deps:yes
 "
