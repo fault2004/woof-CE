@@ -148,6 +148,10 @@ EOF
 append_grub() {
 	outfile="$1"
 	cat >> $outfile <<EOF
+menuentry "Memtest86+" {
+	chainloader /EFI/boot/memtest64.efi
+}
+
 menuentry "Shutdown" {
 	halt
 }
@@ -169,7 +173,19 @@ title Help - Boot Params
 
 title
   root
-  
+
+title Memtest86+ (32bit)
+  chainloader /boot/memtest32.bin
+
+title Memtest86+ (64bit)
+  chainloader /boot/memtest64.bin
+
+title Plop Boot Manager
+  chainloader /boot/plpbt.bin
+
+title
+  root
+
 # Boot from Partition Boot Sector
 
 title Boot first hard drive (hd0,0)
@@ -325,6 +341,7 @@ mk_efi_img() {
 	echo "copying files"
 	mkdir -p /tmp/efi_img/EFI/boot/ || return 4
 	cp -a $gfp/${xFEILD} /tmp/efi_img/EFI/boot/ || return 5
+	cp ${PX}/usr/share/boot-dialog/Memtest64.efi /tmp/efi_img/EFI/boot/ || return 5
 	if [ -n "$gcer" ]; then
 		cp $gcer /tmp/efi_img/EFI/boot/ || return 5
 	fi
@@ -425,24 +442,20 @@ prepend_loop $BUILD/boot/grub/loopback.cfg
 prepend_menu $BUILD/boot/grub/menu.lst
 
 for e in "$NAME" \
-		"$NAME - Copy SFS files to RAM" \
-		"$NAME - Don't copy SFS files to RAM" \
+		"$NAME - Don't copy to RAM" \
 		"$NAME - Force xorgwizard (xorgwizard)" \
 		"$NAME - No X. Try 'xorgwizard' after bootup" \
 		"$NAME - No Kernel Mode Setting" \
 		"$NAME - Safe mode, no X" \
-		"$NAME - RAM only - no pupsave" \
 		"$NAME - Ram Disk Shell" ; do
 		case "$e" in
-			"$NAME")opt='pfix=fsck' ;;
-			*"- Copy"*)opt='pfix=fsck,copy' ;;
+			"$NAME")opt='pfix=ram,fsck,copy' ;;
 			*"- Don't copy"*)opt='pfix=fsck,nocopy' ;;
 			*"- Force xorgwizard"*)opt='pfix=xorgwizard,fsck'; gandl=no ;;
 			*"- No X"*)opt='pfix=nox,fsck' ;;
-			*"- No Kernel Mode"*)opt='nomodeset pfix=fsck'; gandl=no ;;
+			*"- No Kernel Mode"*)opt='nomodeset,fsck'; gandl=no ;;
 			*"- Safe mode"*)opt='pfix=ram,nox,fsck' ;;
-			*"- RAM only"*)opt='pfix=ram,fsck' ;;
-			*"- Ram Disk"*)opt='pfix=rdsh' ;;
+			*"- Ram Disk"*)opt='pfix=rdsh,fsck' ;;
 		esac
 		[ "$gandl" = 'no' ] || build_grub2_cfg $BUILD/grub.cfg "$e" "$opt" true
 		[ "$gandl" = 'no' ] || build_grub2_cfg $BUILD/boot/grub/loopback.cfg "$e" "$opt" true
@@ -469,7 +482,6 @@ else
 	rm -f $BUILD/boot/grub/*.cfg
 	rm -f $BUILD/*.cfg
 fi
-
 # copy files
 cp -a $ISOLINUX $BUILD
 cp -a $ISOLINUX $BUILD/boot/isolinux
@@ -479,6 +491,9 @@ for MOD in ldlinux.c32 libutil.c32 libcom32.c32; do
 	[ -f $MODDIR/$MOD ] && cp -a $MODDIR/$MOD $BUILD/boot/isolinux/
 done
 cp -a $GRLDR $BUILD/boot/grub
+for TOOLS in plpbt.bin memtest32.bin memtest64.bin; do
+	cp ${PX}/usr/share/boot-dialog/$TOOLS $BUILD/boot
+done
 if [ "$LICK_IN_ISO" = 'yes' ] ; then
 	[ -d "${PX}/usr/share/boot-dialog/Windows_Installer" ] && \
 	cp -arf ${PX}/usr/share/boot-dialog/Windows_Installer $BUILD
