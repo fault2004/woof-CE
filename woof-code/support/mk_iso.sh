@@ -341,7 +341,7 @@ mk_efi_img() {
 	echo "copying files"
 	mkdir -p /tmp/efi_img/EFI/boot/ || return 4
 	cp -a $gfp/${xFEILD} /tmp/efi_img/EFI/boot/ || return 5
-	cp ${PX}/usr/share/boot-dialog/Memtest64.efi /tmp/efi_img/EFI/boot/ || return 5
+	cp ${PX}/usr/share/boot-dialog/memtest64.efi /tmp/efi_img/EFI/boot/ || return 5
 	if [ -n "$gcer" ]; then
 		cp $gcer /tmp/efi_img/EFI/boot/ || return 5
 	fi
